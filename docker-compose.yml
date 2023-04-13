@@ -1,0 +1,25 @@
+version: "3.9"
+
+services:
+  api:
+    build: 
+      dockerfile: Dockerfile
+      context: .
+    depends_on:
+      - postgres
+    environment:
+      WEBHOOK_HTTP: https://webhook.site/59737404-d918-4bbf-80d3-0614d8e47582
+      DATABASE_URL: postgres://user:22042004@postgres:5432/banking
+      NODE_ENV: prod
+      PORT: 5000
+    ports:
+      - "4040:5000"
+  postgres:
+    image: postgres:12
+    ports:
+      - "35000:5432"
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: 22042004
+      POSTGRES_DB: banking
+
